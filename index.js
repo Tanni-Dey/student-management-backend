@@ -37,7 +37,11 @@ async function run() {
       const studentSession = req.query.session;
       const que = { id: Number(studentId), session: studentSession };
       const oneStudent = await studentsCollection.findOne(que);
-      res.send(oneStudent);
+      if (oneStudent === null) {
+        res.send({});
+      } else {
+        res.send(oneStudent);
+      }
     });
   } finally {
   }
